@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component, type ReactNode, type ErrorInfo, type PropsWithChildren } from 'react'
 import { lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext'
@@ -10,15 +10,22 @@ import { divider } from './assets'
 import './App.css'
 
 // Error Boundary to catch lazy-load failures
-class ErrorBoundary extends Component {
-  constructor(props) {
+interface ErrorBoundaryState {
+  hasError: boolean
+}
+interface ErrorBoundaryProps {
+  children: ReactNode
+}
+
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props)
-    this.state = { hasError: false, error: null }
+    this.state = { hasError: false }
   }
-  static getDerivedStateFromError(error) {
-    return { hasError: true, error }
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true }
   }
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught:', error, errorInfo)
   }
   render() {
@@ -36,7 +43,7 @@ class ErrorBoundary extends Component {
         }}>
           <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>This section failed to load.</p>
           <button
-            onClick={() => this.setState({ hasError: false, error: null })}
+            onClick={() => this.setState({ hasError: false })}
             style={{
               background: 'none',
               border: '1px solid #ccc',
@@ -56,7 +63,7 @@ class ErrorBoundary extends Component {
 }
 
 // Wrapper that combines ErrorBoundary + Suspense
-function SafeLazy({ children, fallback }) {
+function SafeLazy({ children, fallback }: PropsWithChildren<{ fallback: ReactNode }>) {
   return (
     <ErrorBoundary>
       <Suspense fallback={fallback}>
@@ -145,8 +152,8 @@ function AppContent() {
   const { isDarkMode } = useDarkMode();
   const location = useLocation();
 
-  // Hide portfolio nav & footer on the Chinese Menu page (it has its own navbar)
-  const isProjectPage = location.pathname.startsWith('/projects/');
+  // Hide portfolio nav & footer on project detail pages (they have their own navbars)
+  const isProjectPage = location.pathname.startsWith('/projects/') || location.pathname === '/chinese-menu';
 
   return (
     <>

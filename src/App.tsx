@@ -1,5 +1,6 @@
+import { Component } from 'react'
 import { lazy, Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext'
 import { useThemeColors } from './hooks/useThemeColors'
 import { colors } from './styles/colors'
@@ -8,9 +9,66 @@ import About from './components/section/About'
 import { divider } from './assets'
 import './App.css'
 
-// Lazy load project pages - add your project page imports here
-// Example: const MyProject = lazy(() => import('./pages/projects/MyProject'))
+// Error Boundary to catch lazy-load failures
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false, error: null }
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error }
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error('ErrorBoundary caught:', error, errorInfo)
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '200px',
+          padding: '2rem',
+          color: '#999',
+          textAlign: 'center'
+        }}>
+          <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>This section failed to load.</p>
+          <button
+            onClick={() => this.setState({ hasError: false, error: null })}
+            style={{
+              background: 'none',
+              border: '1px solid #ccc',
+              borderRadius: '8px',
+              padding: '8px 16px',
+              cursor: 'pointer',
+              color: '#666'
+            }}
+          >
+            Retry
+          </button>
+        </div>
+      )
+    }
+    return this.props.children
+  }
+}
+
+// Wrapper that combines ErrorBoundary + Suspense
+function SafeLazy({ children, fallback }) {
+  return (
+    <ErrorBoundary>
+      <Suspense fallback={fallback}>
+        {children}
+      </Suspense>
+    </ErrorBoundary>
+  )
+}
+
+// Lazy load project pages
 const Contact = lazy(() => import('./pages/Contact'))
+const ChineseMenuPage = lazy(() => import('./pages/projects/ChineseMenu/ChineseMenuPage'))
 
 // Lazy load below-the-fold components for better initial load
 const Projects = lazy(() => import('./components/section/Projects'))
@@ -26,12 +84,12 @@ function HomePage() {
   return (
     <>
       <About />
-      <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
+      <SafeLazy fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
         <Projects />
-      </Suspense>
-      <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
+      </SafeLazy>
+      <SafeLazy fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
         <Experience />
-      </Suspense>
+      </SafeLazy>
       {/* Divider with gradient transitions */}
       <div className="w-full py-8 relative" style={{
         background: isDarkMode ? themeColors.background.gradientEnd : colors.white,
@@ -73,22 +131,26 @@ function HomePage() {
           loading="lazy"
         />
       </div>
-      <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
+      <SafeLazy fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
         <Skills />
-      </Suspense>
-      <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
+      </SafeLazy>
+      <SafeLazy fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
         <Certifications />
-      </Suspense>
+      </SafeLazy>
     </>
   )
 }
 
 function AppContent() {
   const { isDarkMode } = useDarkMode();
+  const location = useLocation();
+
+  // Hide portfolio nav & footer on the Chinese Menu page (it has its own navbar)
+  const isProjectPage = location.pathname.startsWith('/projects/');
 
   return (
     <>
-      <Navigation />
+      {!isProjectPage && <Navigation />}
       <div className="app transition-colors duration-300" style={{ backgroundColor: isDarkMode ? '#101727' : undefined }}>
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <main id="main-content" className="main-content">
@@ -96,14 +158,15 @@ function AppContent() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/contact" element={<Contact />} />
-              {/* Add your project routes here */}
-              {/* Example: <Route path="/projects/my-project" element={<MyProject />} /> */}
+              <Route path="/chinese-menu" element={<ChineseMenuPage />} />
             </Routes>
           </Suspense>
         </main>
-        <Suspense fallback={<div className="h-32 flex items-center justify-center">Loading...</div>}>
-          <Footer />
-        </Suspense>
+        {!isProjectPage && (
+          <Suspense fallback={<div className="h-32 flex items-center justify-center">Loading...</div>}>
+            <Footer />
+          </Suspense>
+        )}
       </div>
     </>
   )

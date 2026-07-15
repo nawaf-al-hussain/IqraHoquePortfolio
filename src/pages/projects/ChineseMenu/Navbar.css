@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+
+.chinese-menu-page .navbar {
+  width: 94%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  z-index: 10;
+}
+
+.chinese-menu-page .logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.chinese-menu-page .nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.chinese-menu-page .nav-links li {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.chinese-menu-page .nav-links li:hover {
+  color: #f5b041; 
+}
+
+.chinese-menu-page .nav-btn {
+  background-color: #f5b041;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.chinese-menu-page .nav-btn:hover {
+  background-color: #e49a2d;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .chinese-menu-page .navbar {
+    padding: 0 20px;
+  }
+  .chinese-menu-page .nav-links {
+    display: none;
+  }
+}

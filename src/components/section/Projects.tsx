@@ -233,7 +233,7 @@ const Projects = () => {
       description: "An interactive Chinese food menu website featuring a 3D rotating carousel of dishes (momos, noodles, fried rice & more) with smooth Framer Motion animations and a restaurant-style UI.",
       technologies: ["React", "Vite", "Framer Motion", "CSS", "JavaScript"],
       icon: comingSoon,
-      detailsUrl: "/projects/project-one",
+      detailsUrl: "/chinese-menu",
       githubUrl: socialLinks.repositories.projectOne
     },
     {

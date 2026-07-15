@@ -229,9 +229,9 @@ const Projects = () => {
   // project data - these are the main cards
   const projects = [
     {
-      title: "Project One",
-      description: "A brief description of your first project. Highlight the key features and what makes it unique.",
-      technologies: ["React", "TypeScript", "Node.js", "MongoDB"],
+      title: "Chinese Menu \u2014 DvCafe",
+      description: "An interactive Chinese food menu website featuring a 3D rotating carousel of dishes (momos, noodles, fried rice & more) with smooth Framer Motion animations and a restaurant-style UI.",
+      technologies: ["React", "Vite", "Framer Motion", "CSS", "JavaScript"],
       icon: comingSoon,
       detailsUrl: "/projects/project-one",
       githubUrl: socialLinks.repositories.projectOne

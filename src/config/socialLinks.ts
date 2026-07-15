@@ -7,7 +7,7 @@ export const socialLinks = {
   
   // GitHub repository URLs
   repositories: {
-    projectOne: import.meta.env.VITE_GITHUB_PROJECT1_URL ?? '#',
+    projectOne: import.meta.env.VITE_GITHUB_PROJECT1_URL ?? 'https://github.com/divyashrma18/chinese-menu',
     projectTwo: import.meta.env.VITE_GITHUB_PROJECT2_URL ?? '#',
     projectThree: import.meta.env.VITE_GITHUB_PROJECT3_URL ?? '#',
     projectFour: import.meta.env.VITE_GITHUB_PROJECT4_URL ?? '#',

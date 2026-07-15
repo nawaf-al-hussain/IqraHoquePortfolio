@@ -26,23 +26,13 @@ const Hero = () => {
     { x: 650, y: 80 },
   ];
 
-  const nextSlide = () => {
-    setRotation((r) => r + 360);
-    setIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevSlide = () => {
-    setRotation((r) => r - 360);
-    setIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  const selectSlide = (i) => {
+  const selectSlide = (i: number) => {
     const diff = i - index;
-    setRotation((r) => r + diff * 360);
+    setRotation((r: number) => r + diff * 360);
     setIndex(i);
   };
 
-  const getPosition = (i) => {
+  const getPosition = (i: number): string => {
     const diff = (i - index + images.length) % images.length;
     if (diff === 0) return "center";
     if (diff === 1) return "right";
@@ -77,7 +67,7 @@ const Hero = () => {
           <div className="carousel">
             {images.map((src, i) => {
               const pos = getPosition(i);
-              let animate = {};
+              let animate: Record<string, number> = {};
               let zIndex = 1;
 
               if (pos === "center") {
@@ -145,7 +135,7 @@ const Hero = () => {
             dumplings, sizzling noodles, and golden spring rolls. Each dish is
             handcrafted with love, fresh ingredients, and bold flavors that
             awaken your senses. From rich sauces to comforting soups, every bite
-            tells a story of tradition and taste. Whether you’re craving a quick
+            tells a story of tradition and taste. Whether you're craving a quick
             bite or a soulful meal, we bring the flavors of the East straight to
             your plate — hot, hearty, and unforgettable.
           </motion.p>

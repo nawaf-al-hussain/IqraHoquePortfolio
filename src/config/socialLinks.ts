@@ -3,7 +3,7 @@ export const socialLinks = {
   // Main social profiles
   github: import.meta.env.VITE_GITHUB_URL ?? '#',
   linkedin: import.meta.env.VITE_LINKEDIN_URL ?? '#',
-  email: import.meta.env.VITE_EMAIL ?? '',
+  email: import.meta.env.VITE_EMAIL ?? 'iqrahoque02@gmail.com',
   
   // GitHub repository URLs
   repositories: {
@@ -17,7 +17,7 @@ export const socialLinks = {
   display: {
     github: import.meta.env.VITE_GITHUB_URL?.replace('https://', '') ?? '',
     linkedin: import.meta.env.VITE_LINKEDIN_URL?.replace('https://', '') ?? '',
-    email: import.meta.env.VITE_EMAIL ?? '',
+    email: import.meta.env.VITE_EMAIL ?? 'iqrahoque02@gmail.com',
   }
 };
 

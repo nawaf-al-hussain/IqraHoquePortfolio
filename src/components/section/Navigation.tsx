@@ -18,7 +18,8 @@ const Navigation = () => {
     { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
     { id: 'experience', label: 'Experience' },
-    { id: 'skills', label: 'Skills' }
+    { id: 'skills', label: 'Skills' },
+    { id: 'certifications', label: 'Education' }
   ], []);
 
   useEffect(() => {
@@ -114,8 +115,8 @@ const Navigation = () => {
             WebkitTextFillColor: themeColors.colors.pink[500]
           }}
           onClick={() => window.location.href = '/'}
-          aria-label="Your Name - Go to homepage">
-          Your Name
+          aria-label="Iqra Hoque - Go to homepage">
+          Iqra Hoque
         </button>
         
         {/* Desktop Navigation */}

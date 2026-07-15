@@ -8,34 +8,34 @@ const Experience = () => {
   const themeColors = useThemeColors();
   const experiences = [
     {
-      title: "Your Job Title",
-      company: "Company Name",
-      location: "City, State",
-      period: "Month Year - Month Year",
+      title: "Social Media Manager",
+      company: "Pictorial Shop",
+      location: "Dhaka, Bangladesh",
+      period: "Jul 2025 - Present",
       description: [
-        "Description of your role and accomplishments",
+        "Provide exceptional customer service through timely and thoughtful responses to user comments and messages across social media platforms.",
+        "Utilize analytics tools to track performance metrics, adjusting content strategies to maximize reach and engagement effectiveness.",
       ]
     },
     {
-      title: "Your Job Title",
-      company: "Company Name",
-      location: "City, State",
-      period: "Month Year - Month Year",
+      title: "Tutor",
+      company: "Independent Contractor",
+      location: "Dhaka, Bangladesh",
+      period: "Aug 2022 - Present",
       description: [
-        "Description of your role and accomplishments",
-        "Another accomplishment or responsibility",
-        "One more key achievement",
+        "Provide homework assistance using specific curriculum and materials tailored to each student's learning needs.",
+        "Support students with helpful study habits and exam strategies to improve academic performance.",
+        "Collaborate with students to complete homework assignments, identify lagging skills, and correct weaknesses.",
       ]
     },
     {
-      title: "Your Job Title",
-      company: "Company Name",
-      location: "City, State",
-      period: "Month Year - Month Year",
+      title: "Volunteer",
+      company: "UIU App Forum",
+      location: "United International University, Dhaka",
+      period: "2024 - Present",
       description: [
-        "Description of your role and accomplishments",
-        "Another accomplishment or responsibility",
-        "One more key achievement",
+        "Assist with special events and programs organized by the university's App Forum community.",
+        "Maintain clean, neat, and operational facilities to serve program needs and ensure smooth event execution.",
       ]
     }
   ];

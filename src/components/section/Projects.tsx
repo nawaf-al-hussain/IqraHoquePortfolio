@@ -441,7 +441,7 @@ const Projects = () => {
             </Tooltip>
           </div>
           <p className="text-center mb-12 text-lg text-gray-600 dark:text-gray-300">
-            Here are some of the projects I've worked on recently
+            Projects I'm working on as a CSE student — check back soon!
           </p>
 
           {/* grid layout for project cards */}

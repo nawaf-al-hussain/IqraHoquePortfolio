@@ -76,6 +76,7 @@ function SafeLazy({ children, fallback }: PropsWithChildren<{ fallback: ReactNod
 // Lazy load project pages
 const Contact = lazy(() => import('./pages/Contact'))
 const ChineseMenuPage = lazy(() => import('./pages/projects/ChineseMenu/ChineseMenuPage'))
+const MusicPlayerPage = lazy(() => import('./pages/projects/MusicPlayer/MusicPlayerPage'))
 
 // Lazy load below-the-fold components for better initial load
 const Projects = lazy(() => import('./components/section/Projects'))
@@ -153,7 +154,7 @@ function AppContent() {
   const location = useLocation();
 
   // Hide portfolio nav & footer on project detail pages (they have their own navbars)
-  const isProjectPage = location.pathname.startsWith('/projects/') || location.pathname === '/chinese-menu';
+  const isProjectPage = location.pathname.startsWith('/projects/') || location.pathname === '/chinese-menu' || location.pathname === '/music-player';
 
   return (
     <>
@@ -166,6 +167,7 @@ function AppContent() {
               <Route path="/" element={<HomePage />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/chinese-menu" element={<ChineseMenuPage />} />
+              <Route path="/music-player" element={<MusicPlayerPage />} />
             </Routes>
           </Suspense>
         </main>

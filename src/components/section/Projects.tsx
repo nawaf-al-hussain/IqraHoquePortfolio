@@ -238,10 +238,10 @@ const Projects = () => {
     },
     {
       title: "Project Two",
-      description: "A brief description of your second project. Highlight the key features and what makes it unique.",
-      technologies: ["Python", "Flask", "PostgreSQL", "Docker"],
-      icon: comingSoon,
-      detailsUrl: "/projects/project-two",
+      description: "A feature-rich Electron desktop music player with multi-platform streaming from YouTube, Spotify & Apple Music, dual themes, and local audio playback.",
+      technologies: ["Electron", "React", "Vite", "Spotify API", "YouTube API", "Apple MusicKit"],
+      icon: "/images/music-player/icon.png",
+      detailsUrl: "/music-player",
       githubUrl: socialLinks.repositories.projectTwo
     },
     {

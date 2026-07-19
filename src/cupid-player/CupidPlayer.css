@@ -33,6 +33,11 @@
   --color-panel-text: #C8D3F6;
 }
 
+.cupid-player img {
+  /* Override Tailwind Preflight: img { max-width: 100% } which breaks layer sprites (need 171.9% width) */
+  max-width: none !important;
+}
+
 .cupid-layer {
   position: absolute;
   top: calc(-23 / 306 * var(--cupid-w));
